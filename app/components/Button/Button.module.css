@@ -1,0 +1,30 @@
+.button {
+  height: 44px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.25;
+}
+
+.primary {
+  background-color: var(--color-accent);
+  color: #fff;
+  transition:
+    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.primary:hover,
+.primary:focus-visible {
+  background-color: var(--color-accent-hover);
+}
+
+.primary:active {
+  opacity: 0.7;
+}
+
+.secondary {
+  border: 1px solid var(--color-accent);
+  color: var(--color-primary-text);
+  background-color: transparent;
+}

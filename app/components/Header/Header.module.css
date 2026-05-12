@@ -1,0 +1,14 @@
+.header {
+  background: #f2f4f7;
+  border-bottom: 1px solid #f2f4f7;
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logoLink {
+  padding: 24px 0;
+}
