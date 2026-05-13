@@ -10,7 +10,10 @@ export default async function CarDetails({ params }: CarDetailesProps) {
   const { carId } = await params;
   return (
     <Section>
-      <Container>Details</Container>
+      <Container>
+        <p>details</p>
+        <p>{carId}</p>
+      </Container>
     </Section>
   );
 }

@@ -1,17 +1,30 @@
-import Button from "../components/Button/Button";
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient,
+} from "@tanstack/react-query";
 import CarList from "../components/CarList/CarList";
 import Container from "../components/Container/Container";
 import FilterPanel from "../components/FilterPanel/FilterPanel";
 import Section from "../components/Section/Section";
-import styles from "./Catalog.module.css";
+import { getCars } from "@/lib/cars";
 
-export default function Catalog() {
+export default async function Catalog() {
+  const queryClient = new QueryClient();
+
+  await queryClient.prefetchQuery({
+    queryKey: ["cars"],
+    queryFn: getCars,
+  });
+
   return (
     <Section>
       <Container>
-        <FilterPanel />
-        <CarList />
-        <Button variant="secondary" text="Load more" />
+        <h1 className="visually-hidden">Car catalog</h1>
+        <HydrationBoundary state={dehydrate(queryClient)}>
+          <FilterPanel />
+          <CarList />
+        </HydrationBoundary>
       </Container>
     </Section>
   );

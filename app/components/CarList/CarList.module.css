@@ -1,0 +1,12 @@
+.list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 48px 32px;
+  margin-bottom: 80px;
+}
+
+.button {
+  display: block;
+  margin: 0 auto;
+  padding: 12px 38px;
+}
