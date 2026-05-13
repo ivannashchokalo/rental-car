@@ -12,17 +12,29 @@ import { getCars } from "@/lib/cars";
 export default async function Catalog() {
   const queryClient = new QueryClient();
 
-  await queryClient.prefetchQuery({
-    queryKey: ["cars"],
-    queryFn: getCars,
+  await queryClient.prefetchInfiniteQuery({
+    queryKey: [
+      "cars",
+      {
+        brand: "",
+        price: "",
+        minMileage: "",
+        maxMileage: "",
+      },
+    ],
+
+    queryFn: ({ pageParam }) => getCars(String(pageParam), "", "", "", ""),
+    initialPageParam: 1,
   });
 
   return (
     <Section>
       <Container>
         <h1 className="visually-hidden">Car catalog</h1>
+
         <HydrationBoundary state={dehydrate(queryClient)}>
           <FilterPanel />
+
           <CarList />
         </HydrationBoundary>
       </Container>

@@ -8,8 +8,27 @@ interface CarsResponse {
   totalPages: number;
 }
 
-export const getCars = async () => {
-  const { data } = await api.get<CarsResponse>("/cars");
+export const getCars = async (
+  page: string,
+  brand: string,
+  price: string,
+  minMileage: string,
+  maxMileage: string,
+) => {
+  console.log({
+    page,
+    brand,
+    price,
+  });
+  const { data } = await api.get<CarsResponse>("/cars", {
+    params: {
+      page,
+      brand,
+      rentalPrice: price,
+      minMileage,
+      maxMileage,
+    },
+  });
   console.log(data);
   return data;
 };

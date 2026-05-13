@@ -7,6 +7,8 @@ interface ButtonProps {
   href?: string;
   variant?: "primary" | "secondary";
   className?: string;
+  onClick?: () => void;
+  type?: string;
 }
 
 export default function Button({
@@ -14,6 +16,7 @@ export default function Button({
   href,
   variant = "primary",
   className,
+  onClick,
 }: ButtonProps) {
   const classes = clsx(styles.button, styles[variant], className);
 
@@ -25,5 +28,9 @@ export default function Button({
     );
   }
 
-  return <button className={classes}>{text}</button>;
+  return (
+    <button className={classes} onClick={onClick}>
+      {text}
+    </button>
+  );
 }
