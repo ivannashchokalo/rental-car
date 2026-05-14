@@ -8,7 +8,8 @@ interface ButtonProps {
   variant?: "primary" | "secondary";
   className?: string;
   onClick?: () => void;
-  type?: string;
+  type?: "button" | "submit" | "reset";
+  disabled?: boolean;
 }
 
 export default function Button({
@@ -17,6 +18,8 @@ export default function Button({
   variant = "primary",
   className,
   onClick,
+  type,
+  disabled,
 }: ButtonProps) {
   const classes = clsx(styles.button, styles[variant], className);
 
@@ -29,7 +32,12 @@ export default function Button({
   }
 
   return (
-    <button className={classes} onClick={onClick}>
+    <button
+      type={type}
+      className={classes}
+      onClick={onClick}
+      disabled={disabled}
+    >
       {text}
     </button>
   );

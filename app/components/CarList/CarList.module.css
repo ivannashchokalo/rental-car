@@ -8,5 +8,5 @@
 .button {
   display: block;
   margin: 0 auto;
-  padding: 12px 38px;
+  min-width: 156px;
 }

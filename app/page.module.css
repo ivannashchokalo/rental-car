@@ -32,5 +32,5 @@
 }
 
 .button {
-  padding: 12px 88px;
+  min-width: 276px;
 }

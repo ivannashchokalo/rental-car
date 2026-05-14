@@ -13,6 +13,8 @@ export interface Car {
   fuelConsumption: string;
   engineSize: string;
   description: string;
+  accessories: string[];
+  functionalities: string[];
 }
 
 export type CarId = Car["id"];

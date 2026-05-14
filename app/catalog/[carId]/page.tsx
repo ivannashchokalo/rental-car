@@ -5,6 +5,7 @@ import { getCarById } from "@/lib/cars";
 import Image from "next/image";
 import Icon from "@/app/components/Icon/Icon";
 import BookingForm from "@/app/components/BookingForm/BookingForm";
+import clsx from "clsx";
 
 interface CarDetailesProps {
   params: Promise<{ carId: string }>;
@@ -14,6 +15,7 @@ export default async function CarDetails({ params }: CarDetailesProps) {
   const { carId } = await params;
 
   const car = await getCarById(carId);
+  const features = [...car.accessories, ...car.functionalities];
 
   return (
     <Section>
@@ -28,34 +30,38 @@ export default async function CarDetails({ params }: CarDetailesProps) {
               priority
             />
           </div>
-          <BookingForm />
+          <section className={styles.formSection}>
+            <h2 className={clsx(styles.secondTitle, styles.formTitle)}>
+              Book your car now
+            </h2>
+            <p className={styles.formText}>
+              Stay connected! We are always ready to help you.
+            </p>
+            <BookingForm />
+          </section>
         </div>
-
         <div className={styles.rightColumn}>
           <header className={styles.infoHeader}>
             <div className={styles.titleWrapper}>
               <h1>
                 {car.model}, {car.year}
               </h1>
-
               <p className={styles.idText}>Id: {car.id.split("-")[0]}</p>
             </div>
-
             <div className={styles.infoWrapper}>
               <p className={styles.infoText}>
                 {car.address.split(",")[1]}, {car.address.split(",")[2]}
               </p>
-
               <p className={styles.infoText}>Mileage: {car.mileage} km</p>
             </div>
-
             <p className={styles.price}>${car.rentalPrice}</p>
-
             <p className={styles.description}>{car.description}</p>
           </header>
           <div className={styles.sectionsWrapper}>
             <section>
-              <h2 className={styles.infoTitle}>Rental Conditions: </h2>
+              <h2 className={clsx(styles.secondTitle, styles.infoTitle)}>
+                Rental Conditions:{" "}
+              </h2>
               <ul>
                 <li className={styles.infoListItem}>
                   <Icon
@@ -93,7 +99,9 @@ export default async function CarDetails({ params }: CarDetailesProps) {
               </ul>
             </section>
             <section>
-              <h2 className={styles.infoTitle}>Car Specifications:</h2>
+              <h2 className={clsx(styles.secondTitle, styles.infoTitle)}>
+                Car Specifications:
+              </h2>
               <ul>
                 <li className={styles.infoListItem}>
                   <Icon
@@ -138,68 +146,21 @@ export default async function CarDetails({ params }: CarDetailesProps) {
               </ul>
             </section>
             <section>
-              <h2 className={styles.infoTitle}>
+              <h2 className={clsx(styles.secondTitle, styles.infoTitle)}>
                 Accessories and functionalities:
               </h2>
               <ul className={styles.infoList}>
-                <li className={styles.infoListItem}>
-                  <Icon
-                    name="check-circle"
-                    width={16}
-                    height={16}
-                    className={styles.infoListIcon}
-                  />
-                  <span className={styles.infoListText}>Leather seats</span>
-                </li>
-                <li className={styles.infoListItem}>
-                  <Icon
-                    name="check-circle"
-                    width={16}
-                    height={16}
-                    className={styles.infoListIcon}
-                  />
-                  <span className={styles.infoListText}>Panoramic sunroof</span>
-                </li>
-                <li className={styles.infoListItem}>
-                  <Icon
-                    name="check-circle"
-                    width={16}
-                    height={16}
-                    className={styles.infoListIcon}
-                  />
-                  <span className={styles.infoListText}>Remote start</span>
-                </li>
-                <li className={styles.infoListItem}>
-                  <Icon
-                    name="check-circle"
-                    width={16}
-                    height={16}
-                    className={styles.infoListIcon}
-                  />
-                  <span className={styles.infoListText}>
-                    Blind-spot monitoring
-                  </span>
-                </li>
-                <li className={styles.infoListItem}>
-                  <Icon
-                    name="check-circle"
-                    width={16}
-                    height={16}
-                    className={styles.infoListIcon}
-                  />
-                  <span className={styles.infoListText}>Power liftgate</span>
-                </li>
-                <li className={styles.infoListItem}>
-                  <Icon
-                    name="check-circle"
-                    width={16}
-                    height={16}
-                    className={styles.infoListIcon}
-                  />
-                  <span className={styles.infoListText}>
-                    Premium audio system
-                  </span>
-                </li>
+                {features.map((feature) => (
+                  <li key={feature} className={styles.infoListItem}>
+                    <Icon
+                      name="check-circle"
+                      width={16}
+                      height={16}
+                      className={styles.infoListIcon}
+                    />
+                    <span className={styles.infoListText}>{feature}</span>
+                  </li>
+                ))}
               </ul>
             </section>
           </div>
