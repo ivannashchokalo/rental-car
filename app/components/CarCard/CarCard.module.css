@@ -1,13 +1,7 @@
 .imageWrapper {
   position: relative;
-  width: 100%;
-  height: 268px;
   border-radius: 14px;
   overflow: hidden;
-}
-
-.image {
-  object-fit: cover;
 }
 
 .heartIcon {

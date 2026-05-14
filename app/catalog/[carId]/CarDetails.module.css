@@ -1,0 +1,92 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: 640px 1fr;
+  gap: 72px;
+}
+
+.imgWrapper {
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.sectionsWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 110px;
+}
+
+.infoHeader {
+  margin-bottom: 68px;
+}
+
+.titleWrapper {
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.infoTitle {
+  margin-bottom: 20px;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.2;
+  color: #101828;
+}
+
+.idText {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #8d929a;
+}
+
+.infoWrapper {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.infoText {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #101828;
+}
+
+.price {
+  margin-bottom: 32px;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.33333;
+  color: #3470ff;
+}
+
+.description {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #101828;
+}
+
+.infoListItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.infoListItem:not(:last-child) {
+  margin-bottom: 16px;
+}
+
+.infoListIcon {
+  fill: #101828;
+}
+
+.infoListText {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #101828;
+}

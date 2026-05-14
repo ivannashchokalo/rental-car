@@ -15,11 +15,6 @@ export const getCars = async (
   minMileage: string,
   maxMileage: string,
 ) => {
-  console.log({
-    page,
-    brand,
-    price,
-  });
   const { data } = await api.get<CarsResponse>("/cars", {
     params: {
       page,
@@ -29,7 +24,6 @@ export const getCars = async (
       maxMileage,
     },
   });
-  console.log(data);
   return data;
 };
 

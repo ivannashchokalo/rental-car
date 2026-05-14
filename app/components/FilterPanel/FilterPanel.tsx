@@ -132,11 +132,8 @@ export default function FilterPanel() {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
-
     const minMileage = formData.get("minMileage") as string;
-
     const maxMileage = formData.get("maxMileage") as string;
-
     const params = new URLSearchParams(searchParams.toString());
 
     if (minMileage) {

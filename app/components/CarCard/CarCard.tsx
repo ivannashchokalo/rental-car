@@ -9,7 +9,13 @@ export default function CarCard({ car }: { car: Car }) {
   return (
     <article className={styles.card}>
       <div className={styles.imageWrapper}>
-        <Image src={car.img} alt={car.model} fill className={styles.image} />
+        <Image
+          src={car.img}
+          alt={car.model}
+          width={276}
+          height={268}
+          // className={styles.image}
+        />
         <Icon
           name="heart"
           width={16}
