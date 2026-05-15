@@ -21,10 +21,9 @@ export default function CarList() {
     queryKey: ["cars", { brand, price, minMileage, maxMileage }],
 
     queryFn: ({ pageParam }) =>
-      getCars(String(pageParam), brand, price, minMileage, maxMileage),
+      getCars({ pageParam, brand, price, minMileage, maxMileage }),
 
     initialPageParam: 1,
-    placeholderData: undefined,
 
     getNextPageParam: (lastPage) => {
       if (Number(lastPage.page) < lastPage.totalPages) {

@@ -23,7 +23,11 @@ export default async function Catalog() {
       },
     ],
 
-    queryFn: ({ pageParam }) => getCars(String(pageParam), "", "", "", ""),
+    queryFn: ({ pageParam }) =>
+      getCars({
+        page: Number(pageParam),
+      }),
+
     initialPageParam: 1,
   });
 
@@ -31,7 +35,6 @@ export default async function Catalog() {
     <Section>
       <Container>
         <h1 className="visually-hidden">Car catalog</h1>
-
         <HydrationBoundary state={dehydrate(queryClient)}>
           <FilterPanel />
 

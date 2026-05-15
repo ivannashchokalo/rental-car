@@ -1,7 +1,11 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { SelectOption } from "@/types/select";
-import Select from "react-select";
+
+const Select = dynamic(() => import("react-select"), {
+  ssr: false,
+});
 
 interface CustomSelectProps {
   options: SelectOption[];
@@ -28,7 +32,7 @@ export default function CustomSelect({
         value={value}
         onChange={(option) => {
           if (option) {
-            onChange(option);
+            onChange(option as SelectOption);
           }
         }}
         isSearchable={false}

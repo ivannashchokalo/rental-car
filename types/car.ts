@@ -3,18 +3,21 @@ export interface Car {
   brand: string;
   model: string;
   year: number;
-  img: string;
-  address: string;
-  rentalCompany: string;
   type: string;
+  img: string;
+  description: string;
+  fuelConsumption: string;
+  engine: string;
   mileage: number;
   rentalPrice: string;
+  rentalCompany: string;
+  location: {
+    country: string;
+    city: string;
+    address: string;
+  };
   rentalConditions: string[];
-  fuelConsumption: string;
-  engineSize: string;
-  description: string;
-  accessories: string[];
-  functionalities: string[];
+  features: string[];
 }
 
 export type CarId = Car["id"];

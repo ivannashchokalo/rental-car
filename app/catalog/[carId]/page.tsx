@@ -15,7 +15,6 @@ export default async function CarDetails({ params }: CarDetailesProps) {
   const { carId } = await params;
 
   const car = await getCarById(carId);
-  const features = [...car.accessories, ...car.functionalities];
 
   return (
     <Section>
@@ -50,7 +49,7 @@ export default async function CarDetails({ params }: CarDetailesProps) {
             </div>
             <div className={styles.infoWrapper}>
               <p className={styles.infoText}>
-                {car.address.split(",")[1]}, {car.address.split(",")[2]}
+                {car.location.city}, {car.location.country}
               </p>
               <p className={styles.infoText}>Mileage: {car.mileage} km</p>
             </div>
@@ -140,7 +139,7 @@ export default async function CarDetails({ params }: CarDetailesProps) {
                     className={styles.infoListIcon}
                   />
                   <span className={styles.infoListText}>
-                    Engine Size: {car.engineSize}
+                    Engine Size: {car.engine}
                   </span>
                 </li>
               </ul>
@@ -150,7 +149,7 @@ export default async function CarDetails({ params }: CarDetailesProps) {
                 Accessories and functionalities:
               </h2>
               <ul className={styles.infoList}>
-                {features.map((feature) => (
+                {car.features.map((feature) => (
                   <li key={feature} className={styles.infoListItem}>
                     <Icon
                       name="check-circle"

@@ -94,26 +94,6 @@ export default function BookingForm() {
                 <p className={styles.errorText}>{errors.email}</p>
               )}
             </div>
-
-            <div className={styles.inputWrapper}>
-              <label htmlFor={`${fieldId}-date`} className="visually-hidden">
-                Booking date
-              </label>
-
-              <BookingDatePicker
-                id={`${fieldId}-date`}
-                className={clsx(
-                  styles.input,
-                  styles.inputCommon,
-                  touched.date && errors.date && styles.inputError,
-                )}
-              />
-
-              {touched.date && errors.date && (
-                <p className={styles.errorText}>{errors.date}</p>
-              )}
-            </div>
-
             <div className={styles.inputWrapper}>
               <label htmlFor={`${fieldId}-comment`} className="visually-hidden">
                 Comment

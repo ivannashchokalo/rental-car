@@ -2,10 +2,10 @@
 
 import { useRouter, useSearchParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
-import { getBrands } from "@/lib/brands";
 import CustomSelect from "../CustomSelect/CustomSelect";
 import { SelectOption } from "@/types/select";
 import Button from "../Button/Button";
+import { getFilters } from "@/lib/cars";
 
 export default function FilterPanel() {
   const router = useRouter();
@@ -15,9 +15,9 @@ export default function FilterPanel() {
 
   //----------- brand
 
-  const { data: brands } = useQuery({
-    queryKey: ["brands"],
-    queryFn: getBrands,
+  const { data: filters } = useQuery({
+    queryKey: ["filters"],
+    queryFn: getFilters,
   });
 
   const defaultBrandOption: SelectOption = {
@@ -28,7 +28,7 @@ export default function FilterPanel() {
   const brandOptions: SelectOption[] = [
     defaultBrandOption,
 
-    ...(brands?.map((brandName: string) => ({
+    ...(filters?.brands.map((brandName) => ({
       value: brandName,
       label: brandName,
     })) ?? []),
@@ -57,58 +57,21 @@ export default function FilterPanel() {
     label: "Choose a price",
   };
 
+  const generatedPriceOptions: SelectOption[] = [];
+
+  const minPrice = filters?.price.min ?? 0;
+  const maxPrice = filters?.price.max ?? 0;
+
+  for (let price = minPrice; price <= maxPrice; price += 10) {
+    generatedPriceOptions.push({
+      value: String(price),
+      label: String(price),
+    });
+  }
+
   const priceOptions: SelectOption[] = [
     defaultPriceOption,
-
-    {
-      value: "10",
-      label: "10",
-    },
-
-    {
-      value: "20",
-      label: "20",
-    },
-
-    {
-      value: "30",
-      label: "30",
-    },
-
-    {
-      value: "40",
-      label: "40",
-    },
-
-    {
-      value: "50",
-      label: "50",
-    },
-
-    {
-      value: "60",
-      label: "60",
-    },
-
-    {
-      value: "70",
-      label: "70",
-    },
-
-    {
-      value: "80",
-      label: "80",
-    },
-
-    {
-      value: "90",
-      label: "90",
-    },
-
-    {
-      value: "100",
-      label: "100",
-    },
+    ...generatedPriceOptions,
   ];
 
   const selectedPriceOption =
