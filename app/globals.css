@@ -74,6 +74,11 @@ select {
   font: inherit;
 }
 
+input {
+  outline: none;
+  border: none;
+}
+
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -85,4 +90,10 @@ select {
   clip-path: inset(100%);
   clip: rect(0 0 0 0);
   overflow: hidden;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }

@@ -1,44 +1,55 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import { SelectOption } from "@/types/select";
-
-const Select = dynamic(() => import("react-select"), {
-  ssr: false,
-});
+import Select, { FormatOptionLabelMeta } from "react-select";
+import CustomDropdownIndicator from "../CustomDropdownIndicator/CustomDropdownIndicator";
+import { customSelectStyles } from "./CustomSelect.styles";
 
 interface CustomSelectProps {
   options: SelectOption[];
-  value: SelectOption;
+  value: SelectOption | null;
   onChange: (option: SelectOption) => void;
-  label: string;
+  label?: string;
   id: string;
+  formatOptionLabel?: (
+    option: SelectOption,
+    meta: FormatOptionLabelMeta<SelectOption>,
+  ) => React.ReactNode;
+  menuHeight: string;
+  controlWidth: string;
+  placeholder: string;
 }
 
 export default function CustomSelect({
   options,
   value,
   onChange,
-  label,
   id,
+  formatOptionLabel,
+  menuHeight,
+  controlWidth,
+  placeholder,
 }: CustomSelectProps) {
   return (
-    <div>
-      <label htmlFor={id}>{label}</label>
-
-      <Select
-        inputId={id}
-        options={options}
-        value={value}
-        onChange={(option) => {
-          if (option) {
-            onChange(option as SelectOption);
-          }
-        }}
-        isSearchable={false}
-        menuPlacement="auto"
-        menuPortalTarget={document.body}
-      />
-    </div>
+    <Select<SelectOption>
+      inputId={id}
+      options={options}
+      value={value}
+      onChange={(option) => {
+        if (option) {
+          onChange(option as SelectOption);
+        }
+      }}
+      isSearchable={false}
+      menuPlacement="auto"
+      components={{
+        DropdownIndicator: CustomDropdownIndicator,
+      }}
+      formatOptionLabel={formatOptionLabel}
+      styles={customSelectStyles(menuHeight, controlWidth)}
+      // menuPortalTarget={document.body}
+      menuPosition="fixed"
+      placeholder={placeholder}
+    />
   );
 }

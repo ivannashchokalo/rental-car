@@ -24,6 +24,13 @@ export interface FiltersResponse {
   };
 }
 
+interface BookingRequestData {
+  carId: string;
+  name: string;
+  email: string;
+  comment: string;
+}
+
 export const getCars = async ({
   pageParam,
   brand,
@@ -58,6 +65,16 @@ export const getCarById = async (id: CarId) => {
 
 export const getFilters = async () => {
   const { data } = await api.get<FiltersResponse>("/cars/filters");
-  console.log(data);
+  return data;
+};
+
+export const createBookingRequest = async ({
+  carId,
+  ...body
+}: BookingRequestData) => {
+  const { data } = await api.post<{ message: string }>(
+    `/cars/${carId}/booking-requests`,
+    body,
+  );
   return data;
 };

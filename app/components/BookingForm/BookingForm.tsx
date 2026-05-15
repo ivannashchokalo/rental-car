@@ -4,42 +4,62 @@ import { Field, Form, Formik, FormikHelpers } from "formik";
 import { useId } from "react";
 import * as Yup from "yup";
 import styles from "./BookingForm.module.css";
-
-import BookingDatePicker from "../BookingDatePicker/BookingDatePicker";
 import clsx from "clsx";
 import Button from "../Button/Button";
+import { useMutation } from "@tanstack/react-query";
+import { createBookingRequest } from "@/lib/cars";
+import toast from "react-hot-toast";
 
 interface FormValues {
   name: string;
   email: string;
-  date: Date | null;
   comment: string;
 }
 
 const initialValues: FormValues = {
   name: "",
   email: "",
-  date: null,
   comment: "",
 };
 
 const validationSchema = Yup.object({
   name: Yup.string().min(2, "Too short").required("Name is required"),
   email: Yup.string().email("Invalid email").required("Email is required"),
-  date: Yup.date().nullable(),
-  comment: Yup.string(),
+  comment: Yup.string().required("Comment is required"), // на макеті не видно, що обов'язковий, але бекенд вимагає
 });
 
-export default function BookingForm() {
+export default function BookingForm({ carId }: { carId: string }) {
   const fieldId = useId();
 
-  const handleSubmit = async (
+  const { mutate, isPending } = useMutation({
+    mutationFn: createBookingRequest,
+
+    onSuccess: (data) => {
+      toast.success(data.message);
+    },
+
+    onError: () => {
+      toast.error("Failed to create booking request");
+    },
+  });
+
+  const handleSubmit = (
     values: FormValues,
     actions: FormikHelpers<FormValues>,
   ) => {
-    console.log(values);
-
-    actions.resetForm();
+    mutate(
+      {
+        carId,
+        name: values.name,
+        email: values.email,
+        comment: values.comment,
+      },
+      {
+        onSuccess: () => {
+          actions.resetForm();
+        },
+      },
+    );
   };
 
   return (
@@ -48,7 +68,7 @@ export default function BookingForm() {
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
     >
-      {({ touched, errors, isSubmitting }) => (
+      {({ touched, errors }) => (
         <Form className={styles.form}>
           <div className={styles.inputsWrapper}>
             <div className={styles.inputWrapper}>
@@ -104,7 +124,7 @@ export default function BookingForm() {
                 name="comment"
                 id={`${fieldId}-comment`}
                 rows={4}
-                placeholder="Comment"
+                placeholder="Comment*"
                 className={clsx(
                   styles.textarea,
                   styles.inputCommon,
@@ -119,8 +139,8 @@ export default function BookingForm() {
           </div>
           <Button
             type="submit"
-            text={isSubmitting ? "Submitting..." : "Send"}
-            disabled={isSubmitting}
+            text={isPending ? "Submitting..." : "Send"}
+            disabled={isPending}
             className={styles.button}
           />
         </Form>

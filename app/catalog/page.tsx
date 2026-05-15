@@ -8,6 +8,7 @@ import Container from "../components/Container/Container";
 import FilterPanel from "../components/FilterPanel/FilterPanel";
 import Section from "../components/Section/Section";
 import { getCars } from "@/lib/cars";
+import styles from "./Catalog.module.css";
 
 export default async function Catalog() {
   const queryClient = new QueryClient();
@@ -25,7 +26,7 @@ export default async function Catalog() {
 
     queryFn: ({ pageParam }) =>
       getCars({
-        page: Number(pageParam),
+        pageParam: Number(pageParam),
       }),
 
     initialPageParam: 1,
@@ -36,9 +37,14 @@ export default async function Catalog() {
       <Container>
         <h1 className="visually-hidden">Car catalog</h1>
         <HydrationBoundary state={dehydrate(queryClient)}>
-          <FilterPanel />
-
-          <CarList />
+          <aside className={styles.filters}>
+            <h2 className="visually-hidden">Filters</h2>
+            <FilterPanel />
+          </aside>
+          <section>
+            <h2 className="visually-hidden">Cars list</h2>
+            <CarList />
+          </section>
         </HydrationBoundary>
       </Container>
     </Section>

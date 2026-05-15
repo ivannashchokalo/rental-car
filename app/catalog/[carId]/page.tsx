@@ -36,7 +36,7 @@ export default async function CarDetails({ params }: CarDetailesProps) {
             <p className={styles.formText}>
               Stay connected! We are always ready to help you.
             </p>
-            <BookingForm />
+            <BookingForm carId={car.id} />
           </section>
         </div>
         <div className={styles.rightColumn}>
@@ -45,7 +45,7 @@ export default async function CarDetails({ params }: CarDetailesProps) {
               <h1>
                 {car.model}, {car.year}
               </h1>
-              <p className={styles.idText}>Id: {car.id.split("-")[0]}</p>
+              <p className={styles.idText}>Article: {car.id.slice(0, 4)}</p>
             </div>
             <div className={styles.infoWrapper}>
               <p className={styles.infoText}>

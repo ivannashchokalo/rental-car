@@ -6,12 +6,17 @@ import CustomSelect from "../CustomSelect/CustomSelect";
 import { SelectOption } from "@/types/select";
 import Button from "../Button/Button";
 import { getFilters } from "@/lib/cars";
+import styles from "./FilterPanel.module.css";
+import clsx from "clsx";
+import { useState } from "react";
 
 export default function FilterPanel() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const selectedBrandValue = searchParams.get("brand") ?? "";
-  const selectedPriceValue = searchParams.get("rentalPrice") ?? "";
+  const selectedPriceValue = searchParams.get("price") ?? "";
+  const [brand, setBrand] = useState(selectedBrandValue);
+  const [price, setPrice] = useState(selectedPriceValue);
 
   //----------- brand
 
@@ -20,13 +25,13 @@ export default function FilterPanel() {
     queryFn: getFilters,
   });
 
-  const defaultBrandOption: SelectOption = {
-    value: "",
-    label: "Choose a brand",
-  };
+  // const defaultBrandOption: SelectOption = {
+  //   value: "",
+  //   label: "Choose a brand",
+  // };
 
   const brandOptions: SelectOption[] = [
-    defaultBrandOption,
+    // defaultBrandOption,
 
     ...(filters?.brands.map((brandName) => ({
       value: brandName,
@@ -35,27 +40,30 @@ export default function FilterPanel() {
   ];
 
   const selectedBrandOption =
-    brandOptions.find((option) => option.value === selectedBrandValue) ??
-    defaultBrandOption;
+    brandOptions.find((option) => option.value === brand) ?? null;
 
-  const handleBrandChange = (selectedOption: SelectOption) => {
-    const params = new URLSearchParams(searchParams.toString());
-
-    if (selectedOption.value) {
-      params.set("brand", selectedOption.value);
-    } else {
-      params.delete("brand");
-    }
-
-    router.push(`/catalog?${params.toString()}`);
+  const handleBrandChange = (option: SelectOption) => {
+    setBrand(option.value);
   };
+
+  // const handleBrandChange = (selectedOption: SelectOption) => {
+  //   const params = new URLSearchParams(searchParams.toString());
+
+  //   if (selectedOption.value) {
+  //     params.set("brand", selectedOption.value);
+  //   } else {
+  //     params.delete("brand");
+  //   }
+
+  //   router.push(`/catalog?${params.toString()}`);
+  // };
 
   //--------- price
 
-  const defaultPriceOption: SelectOption = {
-    value: "",
-    label: "Choose a price",
-  };
+  // const defaultPriceOption: SelectOption = {
+  //   value: "",
+  //   label: "Choose a price",
+  // };
 
   const generatedPriceOptions: SelectOption[] = [];
 
@@ -70,69 +78,106 @@ export default function FilterPanel() {
   }
 
   const priceOptions: SelectOption[] = [
-    defaultPriceOption,
+    // defaultPriceOption,
     ...generatedPriceOptions,
   ];
 
   const selectedPriceOption =
-    priceOptions.find((option) => option.value === selectedPriceValue) ??
-    defaultPriceOption;
+    priceOptions.find((option) => option.value === price) ?? null;
 
-  const handlePriceChange = (selectedOption: SelectOption) => {
-    const params = new URLSearchParams(searchParams.toString());
-
-    if (selectedOption.value) {
-      params.set("rentalPrice", selectedOption.value);
-    } else {
-      params.delete("rentalPrice");
-    }
-    router.push(`/catalog?${params.toString()}`);
+  const handlePriceChange = (option: SelectOption) => {
+    setPrice(option.value);
   };
 
-  //------- mileage
+  //------- submit
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
+    const params = new URLSearchParams();
+
     const minMileage = formData.get("minMileage") as string;
     const maxMileage = formData.get("maxMileage") as string;
-    const params = new URLSearchParams(searchParams.toString());
+
+    if (maxMileage && !minMileage) {
+      params.set("minMileage", "0");
+    }
+
+    if (brand) {
+      params.set("brand", brand);
+    }
+
+    if (price) {
+      params.set("price", price);
+    }
 
     if (minMileage) {
       params.set("minMileage", minMileage);
-    } else {
-      params.delete("minMileage");
     }
 
     if (maxMileage) {
       params.set("maxMileage", maxMileage);
-    } else {
-      params.delete("maxMileage");
     }
 
     router.push(`/catalog?${params.toString()}`);
   };
 
+  const handleClearFilters = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const form = e.currentTarget.form;
+
+    form?.reset();
+
+    setBrand("");
+    setPrice("");
+
+    router.push("/catalog");
+  };
+
   return (
-    <>
-      <CustomSelect
-        options={brandOptions}
-        value={selectedBrandOption}
-        onChange={handleBrandChange}
-        id="brand"
-        label="Car brand"
-      />
-      <CustomSelect
-        options={priceOptions}
-        value={selectedPriceOption}
-        onChange={handlePriceChange}
-        id="price"
-        label="Price/ 1 hour"
-      />
-      <form onSubmit={handleSubmit}>
-        <fieldset>
-          <legend>Car mileage / km</legend>
+    <form onSubmit={handleSubmit} className={styles.form}>
+      <div className={styles.formWrapper}>
+        <div>
+          <label htmlFor="brand" className={styles.label}>
+            Car brand
+          </label>
+
+          <CustomSelect
+            id="brand"
+            options={brandOptions}
+            value={selectedBrandOption}
+            onChange={handleBrandChange}
+            menuHeight="272px"
+            controlWidth="204px"
+            placeholder="Choose a brand"
+          />
+        </div>
+
+        <div>
+          <label htmlFor="price" className={styles.label}>
+            Price / 1 hour
+          </label>
+
+          <CustomSelect
+            id="price"
+            options={priceOptions}
+            value={selectedPriceOption}
+            onChange={handlePriceChange}
+            menuHeight="188px"
+            controlWidth="196px"
+            formatOptionLabel={(option, meta) => {
+              if (meta.context === "value" && option.value) {
+                return `To $${option.label}`;
+              }
+
+              return option.label;
+            }}
+            placeholder="Choose a price"
+          />
+        </div>
+
+        <fieldset className={styles.fieldset}>
+          <legend className={styles.label}>Car mileage / km</legend>
 
           <label htmlFor="minMileage" className="visually-hidden">
             Minimum mileage
@@ -144,6 +189,7 @@ export default function FilterPanel() {
             type="number"
             placeholder="From"
             defaultValue={searchParams.get("minMileage") ?? ""}
+            className={clsx(styles.input, styles.inputLeft)}
           />
 
           <label htmlFor="maxMileage" className="visually-hidden">
@@ -156,11 +202,24 @@ export default function FilterPanel() {
             type="number"
             placeholder="To"
             defaultValue={searchParams.get("maxMileage") ?? ""}
+            className={clsx(styles.input, styles.inputRight)}
           />
         </fieldset>
 
-        <Button type="submit" text="Search" variant="primary" />
-      </form>
-    </>
+        <Button
+          type="submit"
+          text="Search"
+          variant="primary"
+          className={styles.submitButton}
+        />
+      </div>
+      <button
+        type="button"
+        className={styles.clearButton}
+        onClick={handleClearFilters}
+      >
+        Clear filters
+      </button>
+    </form>
   );
 }

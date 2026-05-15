@@ -37,9 +37,7 @@ export default function CarList() {
   const cars = data?.pages.flatMap((page) => page.cars) ?? [];
 
   return (
-    <section>
-      <h2 className="visually-hidden">Cars list</h2>
-
+    <>
       {cars.length === 0 ? (
         <p>No cars found.</p>
       ) : (
@@ -61,6 +59,6 @@ export default function CarList() {
           type="button"
         />
       )}
-    </section>
+    </>
   );
 }

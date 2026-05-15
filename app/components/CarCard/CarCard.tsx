@@ -26,7 +26,7 @@ export default function CarCard({ car }: { car: Car }) {
       <div className={styles.content}>
         <div className={styles.contentWrapper}>
           <h2 className={styles.title}>
-            {car.brand} <span className={styles.modelText}>{car.model}</span>,
+            {car.brand} <span className={styles.modelText}>{car.model}</span>,{" "}
             {car.year}
           </h2>
           <p className={styles.priceText}>${car.rentalPrice}</p>
