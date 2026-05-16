@@ -13,7 +13,7 @@ import { useSearchParams } from "next/navigation";
 export default function CarList() {
   const searchParams = useSearchParams();
   const brand = searchParams.get("brand") ?? "";
-  const price = searchParams.get("rentalPrice") ?? "";
+  const price = searchParams.get("price") ?? "";
   const minMileage = searchParams.get("minMileage") ?? "";
   const maxMileage = searchParams.get("maxMileage") ?? "";
 

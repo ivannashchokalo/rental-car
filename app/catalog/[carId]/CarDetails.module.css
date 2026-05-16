@@ -25,7 +25,6 @@
   font-weight: 600;
   font-size: 20px;
   line-height: 1.2;
-  color: var(--color-primary-text);
 }
 
 .formTitle {
@@ -35,8 +34,6 @@
 .formText {
   margin-bottom: 24px;
   font-weight: 500;
-  font-size: 16px;
-  line-height: 1.25;
   color: var(--color-secondary-text);
 }
 
@@ -73,8 +70,6 @@
 
 .idText {
   font-weight: 500;
-  font-size: 16px;
-  line-height: 1.25;
   color: var(--color-secondary-text);
 }
 
@@ -91,9 +86,6 @@
 
 .infoText {
   font-weight: 500;
-  font-size: 16px;
-  line-height: 1.25;
-  color: var(--color-primary-text);
 }
 
 .price {
@@ -106,9 +98,6 @@
 
 .description {
   font-weight: 500;
-  font-size: 16px;
-  line-height: 1.25;
-  color: var(--color-primary-text);
 }
 
 .infoListItem {
@@ -127,7 +116,4 @@
 
 .infoListText {
   font-weight: 500;
-  font-size: 16px;
-  line-height: 1.25;
-  color: var(--color-primary-text);
 }

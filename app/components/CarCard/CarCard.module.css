@@ -64,12 +64,7 @@
 
 .title {
   flex: 1;
-
   font-weight: 500;
-  font-size: 16px;
-  line-height: 1.25;
-
-  color: var(--color-primary-text);
 }
 
 .modelText {
@@ -96,10 +91,6 @@
   margin-right: 14px;
 
   font-weight: 500;
-  font-size: 16px;
-  line-height: 1.25;
-
-  color: var(--color-primary-text);
 }
 
 .contentListWrapper {
