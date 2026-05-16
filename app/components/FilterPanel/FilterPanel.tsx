@@ -25,14 +25,7 @@ export default function FilterPanel() {
     queryFn: getFilters,
   });
 
-  // const defaultBrandOption: SelectOption = {
-  //   value: "",
-  //   label: "Choose a brand",
-  // };
-
   const brandOptions: SelectOption[] = [
-    // defaultBrandOption,
-
     ...(filters?.brands.map((brandName) => ({
       value: brandName,
       label: brandName,
@@ -46,24 +39,7 @@ export default function FilterPanel() {
     setBrand(option.value);
   };
 
-  // const handleBrandChange = (selectedOption: SelectOption) => {
-  //   const params = new URLSearchParams(searchParams.toString());
-
-  //   if (selectedOption.value) {
-  //     params.set("brand", selectedOption.value);
-  //   } else {
-  //     params.delete("brand");
-  //   }
-
-  //   router.push(`/catalog?${params.toString()}`);
-  // };
-
   //--------- price
-
-  // const defaultPriceOption: SelectOption = {
-  //   value: "",
-  //   label: "Choose a price",
-  // };
 
   const generatedPriceOptions: SelectOption[] = [];
 
@@ -77,10 +53,7 @@ export default function FilterPanel() {
     });
   }
 
-  const priceOptions: SelectOption[] = [
-    // defaultPriceOption,
-    ...generatedPriceOptions,
-  ];
+  const priceOptions: SelectOption[] = [...generatedPriceOptions];
 
   const selectedPriceOption =
     priceOptions.find((option) => option.value === price) ?? null;
@@ -135,91 +108,93 @@ export default function FilterPanel() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className={styles.form}>
-      <div className={styles.formWrapper}>
-        <div>
-          <label htmlFor="brand" className={styles.label}>
-            Car brand
-          </label>
+    <div className={styles.wrapper}>
+      <form onSubmit={handleSubmit} className={styles.form}>
+        <div className={styles.formWrapper}>
+          <div>
+            <label htmlFor="brand" className={styles.label}>
+              Car brand
+            </label>
 
-          <CustomSelect
-            id="brand"
-            options={brandOptions}
-            value={selectedBrandOption}
-            onChange={handleBrandChange}
-            menuHeight="272px"
-            controlWidth="204px"
-            placeholder="Choose a brand"
+            <CustomSelect
+              id="brand"
+              options={brandOptions}
+              value={selectedBrandOption}
+              onChange={handleBrandChange}
+              menuHeight="272px"
+              controlWidth="204px"
+              placeholder="Choose a brand"
+            />
+          </div>
+
+          <div>
+            <label htmlFor="price" className={styles.label}>
+              Price / 1 hour
+            </label>
+
+            <CustomSelect
+              id="price"
+              options={priceOptions}
+              value={selectedPriceOption}
+              onChange={handlePriceChange}
+              menuHeight="188px"
+              controlWidth="196px"
+              formatOptionLabel={(option, meta) => {
+                if (meta.context === "value" && option.value) {
+                  return `To $${option.label}`;
+                }
+
+                return option.label;
+              }}
+              placeholder="Choose a price"
+            />
+          </div>
+
+          <fieldset className={styles.fieldset}>
+            <legend className={styles.label}>Car mileage / km</legend>
+
+            <label htmlFor="minMileage" className="visually-hidden">
+              Minimum mileage
+            </label>
+
+            <input
+              id="minMileage"
+              name="minMileage"
+              type="number"
+              placeholder="From"
+              defaultValue={searchParams.get("minMileage") ?? ""}
+              className={clsx(styles.input, styles.inputLeft)}
+            />
+
+            <label htmlFor="maxMileage" className="visually-hidden">
+              Maximum mileage
+            </label>
+
+            <input
+              id="maxMileage"
+              name="maxMileage"
+              type="number"
+              placeholder="To"
+              defaultValue={searchParams.get("maxMileage") ?? ""}
+              className={clsx(styles.input, styles.inputRight)}
+            />
+          </fieldset>
+
+          <Button
+            type="submit"
+            text="Search"
+            variant="primary"
+            className={styles.submitButton}
           />
         </div>
-
-        <div>
-          <label htmlFor="price" className={styles.label}>
-            Price / 1 hour
-          </label>
-
-          <CustomSelect
-            id="price"
-            options={priceOptions}
-            value={selectedPriceOption}
-            onChange={handlePriceChange}
-            menuHeight="188px"
-            controlWidth="196px"
-            formatOptionLabel={(option, meta) => {
-              if (meta.context === "value" && option.value) {
-                return `To $${option.label}`;
-              }
-
-              return option.label;
-            }}
-            placeholder="Choose a price"
-          />
-        </div>
-
-        <fieldset className={styles.fieldset}>
-          <legend className={styles.label}>Car mileage / km</legend>
-
-          <label htmlFor="minMileage" className="visually-hidden">
-            Minimum mileage
-          </label>
-
-          <input
-            id="minMileage"
-            name="minMileage"
-            type="number"
-            placeholder="From"
-            defaultValue={searchParams.get("minMileage") ?? ""}
-            className={clsx(styles.input, styles.inputLeft)}
-          />
-
-          <label htmlFor="maxMileage" className="visually-hidden">
-            Maximum mileage
-          </label>
-
-          <input
-            id="maxMileage"
-            name="maxMileage"
-            type="number"
-            placeholder="To"
-            defaultValue={searchParams.get("maxMileage") ?? ""}
-            className={clsx(styles.input, styles.inputRight)}
-          />
-        </fieldset>
-
-        <Button
-          type="submit"
-          text="Search"
-          variant="primary"
-          className={styles.submitButton}
-        />
-      </div>
-      <button
-        type="button"
-        className={styles.clearButton}
-        onClick={handleClearFilters}
-      >
-        Clear filters
-      </button>
-    </form>
+        <button
+          type="button"
+          className={styles.clearButton}
+          onClick={handleClearFilters}
+        >
+          Clear filters
+        </button>
+      </form>
+    </div>
   );
 }

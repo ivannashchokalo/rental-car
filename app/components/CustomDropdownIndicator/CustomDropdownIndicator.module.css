@@ -1,5 +1,5 @@
 .arrow {
-  fill: #101828;
+  fill: var(--color-primary-text);
   transform: rotate(0deg);
   transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }

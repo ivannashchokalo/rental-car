@@ -29,7 +29,7 @@ export default async function CarDetails({ params }: CarDetailesProps) {
               priority
             />
           </div>
-          <section className={styles.formSection}>
+          <div className={styles.formWrapper}>
             <h2 className={clsx(styles.secondTitle, styles.formTitle)}>
               Book your car now
             </h2>
@@ -37,10 +37,10 @@ export default async function CarDetails({ params }: CarDetailesProps) {
               Stay connected! We are always ready to help you.
             </p>
             <BookingForm carId={car.id} />
-          </section>
+          </div>
         </div>
         <div className={styles.rightColumn}>
-          <header className={styles.infoHeader}>
+          <div className={styles.topInfoWrapper}>
             <div className={styles.titleWrapper}>
               <h1>
                 {car.model}, {car.year}
@@ -55,11 +55,11 @@ export default async function CarDetails({ params }: CarDetailesProps) {
             </div>
             <p className={styles.price}>${car.rentalPrice}</p>
             <p className={styles.description}>{car.description}</p>
-          </header>
-          <div className={styles.sectionsWrapper}>
-            <section>
+          </div>
+          <div className={styles.detailsWrapper}>
+            <div className={styles.details}>
               <h2 className={clsx(styles.secondTitle, styles.infoTitle)}>
-                Rental Conditions:{" "}
+                Rental Conditions:
               </h2>
               <ul>
                 <li className={styles.infoListItem}>
@@ -96,8 +96,8 @@ export default async function CarDetails({ params }: CarDetailesProps) {
                   </span>
                 </li>
               </ul>
-            </section>
-            <section>
+            </div>
+            <div className={styles.details}>
               <h2 className={clsx(styles.secondTitle, styles.infoTitle)}>
                 Car Specifications:
               </h2>
@@ -142,9 +142,20 @@ export default async function CarDetails({ params }: CarDetailesProps) {
                     Engine Size: {car.engine}
                   </span>
                 </li>
+                <li className={styles.infoListItem}>
+                  <Icon
+                    name="mileage"
+                    width={16}
+                    height={16}
+                    className={styles.infoListIcon}
+                  />
+                  <span className={styles.infoListText}>
+                    Mileage: {car.engine}
+                  </span>
+                </li>
               </ul>
-            </section>
-            <section>
+            </div>
+            <div className={styles.details}>
               <h2 className={clsx(styles.secondTitle, styles.infoTitle)}>
                 Accessories and functionalities:
               </h2>
@@ -161,7 +172,7 @@ export default async function CarDetails({ params }: CarDetailesProps) {
                   </li>
                 ))}
               </ul>
-            </section>
+            </div>
           </div>
         </div>
       </Container>

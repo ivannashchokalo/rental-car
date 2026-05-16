@@ -37,14 +37,9 @@ export default async function Catalog() {
       <Container>
         <h1 className="visually-hidden">Car catalog</h1>
         <HydrationBoundary state={dehydrate(queryClient)}>
-          <aside className={styles.filters}>
-            <h2 className="visually-hidden">Filters</h2>
-            <FilterPanel />
-          </aside>
-          <section>
-            <h2 className="visually-hidden">Cars list</h2>
-            <CarList />
-          </section>
+          <h2 className="visually-hidden">Cars list</h2>
+          <FilterPanel />
+          <CarList />
         </HydrationBoundary>
       </Container>
     </Section>

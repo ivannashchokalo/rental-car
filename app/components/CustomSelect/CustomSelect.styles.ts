@@ -10,11 +10,15 @@ export const customSelectStyles = (
     ...base,
     width,
     height: "44px",
+
     border: "none",
     borderRadius: "12px",
-    backgroundColor: "#f7f7f7",
+
+    backgroundColor: "var(--color-white)",
     boxShadow: "none",
+
     padding: "12px 16px",
+
     cursor: "pointer",
 
     ":hover": {
@@ -26,20 +30,34 @@ export const customSelectStyles = (
   valueContainer: (base) => ({
     ...base,
     padding: 0,
+
     fontWeight: 500,
     fontSize: "16px",
     lineHeight: 1.2,
-    color: "#101828",
+
+    color: "var(--color-primary-text)",
+  }),
+
+  placeholder: (base) => ({
+    ...base,
+    margin: 0,
+
+    fontWeight: 500,
+    fontSize: "16px",
+    lineHeight: 1.25,
+
+    color: "var(--color-primary-text)",
   }),
 
   // Стилі для вибраного значення
   singleValue: (base) => ({
     ...base,
     margin: 0,
+
     fontSize: "16px",
     fontWeight: 500,
 
-    color: "#101828",
+    color: "var(--color-primary-text)",
   }),
 
   // Вертикальна лінія біля стрілки
@@ -56,14 +74,19 @@ export const customSelectStyles = (
   // Dropdown menu
   menu: (base) => ({
     ...base,
-    // height: menuHeight,
 
     borderRadius: "12px",
+
     boxShadow: "0 4px 36px rgba(0,0,0,0.02)",
+
     marginTop: "4px",
-    backgroundColor: "#fff",
-    border: "1px solid #f7f7f7",
+
+    backgroundColor: "var(--color-white)",
+
+    border: "1px solid var(--color-background-light)",
+
     padding: "14px 8px 14px 18px",
+
     overflow: "hidden",
   }),
 
@@ -71,26 +94,36 @@ export const customSelectStyles = (
   menuList: (base) => ({
     ...base,
     padding: 0,
+
     maxHeight: menuHeight,
+
     overflowY: "auto",
   }),
 
   // Один option у dropdown
   option: (base, state) => ({
     ...base,
+
     padding: "0 0 8px",
+
     backgroundColor: "transparent",
-    color: state.isSelected ? "#101828" : "#8D929A",
+
+    color: state.isSelected
+      ? "var(--color-primary-text)"
+      : "var(--color-secondary-text)",
+
     fontSize: "16px",
     lineHeight: 1.25,
+
     cursor: "pointer",
+
     ":last-of-type": {
       paddingBottom: 0,
     },
 
     ":hover": {
       backgroundColor: "transparent",
-      color: "#101828",
+      color: "var(--color-primary-text)",
     },
 
     ":active": {

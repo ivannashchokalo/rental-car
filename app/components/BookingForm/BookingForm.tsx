@@ -35,10 +35,12 @@ export default function BookingForm({ carId }: { carId: string }) {
     mutationFn: createBookingRequest,
 
     onSuccess: (data) => {
+      toast.dismiss();
       toast.success(data.message);
     },
 
     onError: () => {
+      toast.dismiss();
       toast.error("Failed to create booking request");
     },
   });

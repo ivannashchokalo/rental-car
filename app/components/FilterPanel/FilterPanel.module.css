@@ -1,3 +1,11 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 60px;
+}
+
 .form {
   display: flex;
   flex-direction: column;
@@ -7,7 +15,9 @@
 .formWrapper {
   display: flex;
   align-items: end;
+
   gap: 16px;
+
   margin-bottom: 8px;
 }
 
@@ -17,11 +27,15 @@
 
 .clearButton {
   margin-right: 35px;
+
   font-weight: 500;
   font-size: 16px;
   line-height: 1.25;
-  color: #8d929a;
+
+  color: var(--color-secondary-text);
+
   background-color: transparent;
+
   transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -36,30 +50,38 @@
 
 .label {
   display: inline-block;
+
   margin-bottom: 8px;
+
   font-weight: 400;
   font-size: 12px;
   line-height: 1.33;
-  color: #8d929a;
+
+  color: var(--color-secondary-text);
 }
 
 .fieldset {
   border: none;
+  padding: 0;
 }
 
 .input {
-  background-color: #f7f7f7;
   width: 160px;
   height: 44px;
+
   padding: 12px 24px;
+
+  background-color: var(--color-white);
+
   font-weight: 500;
   font-size: 16px;
   line-height: 1.25;
-  color: #101828;
+
+  color: var(--color-primary-text);
 }
 
 .inputLeft {
-  border-right: 1px solid #dadde1;
+  border-right: 1px solid var(--color-border-light);
   border-radius: 12px 0 0 12px;
 }
 
@@ -71,5 +93,6 @@
   font-weight: 500;
   font-size: 16px;
   line-height: 1.25;
-  color: #101828;
+
+  color: var(--color-primary-text);
 }

@@ -1,13 +1,13 @@
 .wrapper {
   display: grid;
   grid-template-columns: 640px 1fr;
-  gap: 72px;
+  gap: 32px;
 }
 
 .leftColumn {
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 32px;
 }
 
 .imgWrapper {
@@ -15,17 +15,17 @@
   overflow: hidden;
 }
 
-.formSection {
-  border: 1px solid #dadde1;
+.formWrapper {
   border-radius: 10px;
   padding: 32px;
+  background-color: var(--color-white);
 }
 
 .secondTitle {
   font-weight: 600;
   font-size: 20px;
   line-height: 1.2;
-  color: #101828;
+  color: var(--color-primary-text);
 }
 
 .formTitle {
@@ -37,17 +37,31 @@
   font-weight: 500;
   font-size: 16px;
   line-height: 1.25;
-  color: #8d929a;
+  color: var(--color-secondary-text);
 }
 
-.sectionsWrapper {
+.topInfoWrapper {
+  margin-bottom: 68px;
+}
+
+.rightColumn {
+  padding: 32px 24px;
+  border-radius: 16px;
+  background-color: var(--color-white);
+}
+
+.detailsWrapper {
   display: flex;
   flex-direction: column;
-  gap: 110px;
+  gap: 24px;
 }
 
-.infoHeader {
-  margin-bottom: 68px;
+.details:not(:last-child):after {
+  content: "";
+  width: 480px;
+  display: block;
+  margin-top: 24px;
+  border: 1px solid var(--color-border-light);
 }
 
 .titleWrapper {
@@ -61,7 +75,7 @@
   font-weight: 500;
   font-size: 16px;
   line-height: 1.25;
-  color: #8d929a;
+  color: var(--color-secondary-text);
 }
 
 .infoWrapper {
@@ -79,7 +93,7 @@
   font-weight: 500;
   font-size: 16px;
   line-height: 1.25;
-  color: #101828;
+  color: var(--color-primary-text);
 }
 
 .price {
@@ -87,14 +101,14 @@
   font-weight: 600;
   font-size: 24px;
   line-height: 1.33333;
-  color: #3470ff;
+  color: var(--color-accent);
 }
 
 .description {
   font-weight: 500;
   font-size: 16px;
   line-height: 1.25;
-  color: #101828;
+  color: var(--color-primary-text);
 }
 
 .infoListItem {
@@ -108,12 +122,12 @@
 }
 
 .infoListIcon {
-  fill: #101828;
+  fill: var(--color-primary-text);
 }
 
 .infoListText {
   font-weight: 500;
   font-size: 16px;
   line-height: 1.25;
-  color: #101828;
+  color: var(--color-primary-text);
 }
