@@ -1,11 +1,11 @@
 import { Car } from "@/types/car";
 import styles from "./CarCard.module.css";
-import Button from "../Button/Button";
 import Image from "next/image";
-import Icon from "../Icon/Icon";
 import clsx from "clsx";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import Icon from "../Icon/Icon";
+import Button from "../Button/Button";
 
 export default function CarCard({ car }: { car: Car }) {
   const [isFavorite, setIsFavorite] = useState(false);

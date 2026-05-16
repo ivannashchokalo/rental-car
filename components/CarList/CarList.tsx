@@ -1,9 +1,7 @@
 "use client";
 
 import styles from "./CarList.module.css";
-
 import { getCars } from "@/lib/cars";
-
 import CarCard from "../CarCard/CarCard";
 import Button from "../Button/Button";
 

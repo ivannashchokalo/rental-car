@@ -1,10 +1,10 @@
-import Section from "@/app/components/Section/Section";
+import Section from "@/components/Section/Section";
 import styles from "./CarDetails.module.css";
-import Container from "@/app/components/Container/Container";
+import Container from "@/components/Container/Container";
 import { getCarById } from "@/lib/cars";
 import Image from "next/image";
-import Icon from "@/app/components/Icon/Icon";
-import BookingForm from "@/app/components/BookingForm/BookingForm";
+import Icon from "@/components/Icon/Icon";
+import BookingForm from "@/components/BookingForm/BookingForm";
 import clsx from "clsx";
 
 interface CarDetailesProps {

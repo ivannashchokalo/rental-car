@@ -2,11 +2,10 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 48px 32px;
-  margin-bottom: 80px;
+  margin-bottom: 48px;
 }
 
 .button {
-  display: block;
   margin: 0 auto;
   min-width: 156px;
 }

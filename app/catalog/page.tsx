@@ -3,10 +3,10 @@ import {
   HydrationBoundary,
   QueryClient,
 } from "@tanstack/react-query";
-import CarList from "../components/CarList/CarList";
-import Container from "../components/Container/Container";
-import FilterPanel from "../components/FilterPanel/FilterPanel";
-import Section from "../components/Section/Section";
+import CarList from "../../components/CarList/CarList";
+import Container from "../../components/Container/Container";
+import FilterPanel from "../../components/FilterPanel/FilterPanel";
+import Section from "../../components/Section/Section";
 import { getCars } from "@/lib/cars";
 import styles from "./Catalog.module.css";
 
