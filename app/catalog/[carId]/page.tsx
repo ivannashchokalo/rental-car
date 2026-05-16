@@ -6,14 +6,38 @@ import Image from "next/image";
 import Icon from "@/components/Icon/Icon";
 import BookingForm from "@/components/BookingForm/BookingForm";
 import clsx from "clsx";
+import { Metadata } from "next";
 
 interface CarDetailesProps {
   params: Promise<{ carId: string }>;
 }
 
+export async function generateMetadata({
+  params,
+}: CarDetailesProps): Promise<Metadata> {
+  const { carId } = await params;
+  const car = await getCarById(carId);
+  return {
+    title: `${car.brand} ${car.model}`,
+    description: car.description.slice(0, 100),
+    openGraph: {
+      title: `${car.brand} ${car.model}`,
+      description: car.description.slice(0, 100),
+      url: `https://rental-car-4csh.vercel.app/catalog/${carId}`,
+      images: [
+        {
+          url: car.img,
+          width: 1200,
+          height: 630,
+          alt: `${car.brand} ${car.model}`,
+        },
+      ],
+    },
+  };
+}
+
 export default async function CarDetails({ params }: CarDetailesProps) {
   const { carId } = await params;
-
   const car = await getCarById(carId);
 
   return (

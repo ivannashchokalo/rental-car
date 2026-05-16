@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
 import "./globals.css";
 import Header from "../components/Header/Header";
-import TanStackProvider from "@/providers/  TanStackProvider";
 import { Toaster } from "react-hot-toast";
+import TanStackProvider from "@/providers/TanStackProvider";
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -14,7 +14,22 @@ const manrope = Manrope({
 export const metadata: Metadata = {
   title: "RentalCar",
   description:
-    "Modern car rental service for comfortable and affordable trips.",
+    "RentalCar is a modern car rental service for comfortable and affordable trips. Browse available vehicles, explore detailed specifications, and book your perfect car with ease.",
+  openGraph: {
+    type: "website",
+    url: "https://rental-car-4csh.vercel.app",
+    title: "RentalCar",
+    description:
+      "Find the perfect car for your next trip with RentalCar. Explore a wide selection of vehicles, detailed specifications, and a seamless booking experience in one modern platform.",
+    images: [
+      {
+        url: "https://rental-car-4csh.vercel.app/background.webp",
+        width: 1200,
+        height: 630,
+        alt: "RentalCar application preview",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
