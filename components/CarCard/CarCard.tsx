@@ -22,7 +22,6 @@ export default function CarCard({ car }: { car: Car }) {
     <article className={styles.card}>
       <div className={styles.imageWrapper}>
         <Image src={car.img} alt={car.model} fill className={styles.image} />
-
         <button
           type="button"
           onClick={handleFavoriteClick}
@@ -31,8 +30,6 @@ export default function CarCard({ car }: { car: Car }) {
         >
           <Icon
             name="heart"
-            width={16}
-            height={16}
             className={clsx(
               styles.heartIcon,
               isFavorite && styles.heartIconActive,

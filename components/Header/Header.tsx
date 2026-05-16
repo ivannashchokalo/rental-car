@@ -9,7 +9,11 @@ export default function Header() {
     <header className={styles.header}>
       <Container>
         <nav className={styles.navigation}>
-          <Link href="/" className={styles.logoLink}>
+          <Link
+            href="/"
+            className={styles.logoLink}
+            aria-label="Go to home page"
+          >
             <Icon
               name="logo"
               width={104}

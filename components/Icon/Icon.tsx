@@ -1,13 +1,25 @@
 interface IconProps {
   name: string;
-  width: number;
-  height: number;
+  width?: number;
+  height?: number;
   className: string;
+  ariaHidden?: boolean;
 }
 
-export default function Icon({ name, width, height, className }: IconProps) {
+export default function Icon({
+  name,
+  width = 16,
+  height = 16,
+  className,
+  ariaHidden = true,
+}: IconProps) {
   return (
-    <svg width={width} height={height} className={className}>
+    <svg
+      width={width}
+      height={height}
+      className={className}
+      aria-hidden={ariaHidden}
+    >
       <use href={`/icons.svg#${name}`} />
     </svg>
   );

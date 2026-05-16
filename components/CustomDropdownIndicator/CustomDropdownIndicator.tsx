@@ -15,8 +15,6 @@ export default function CustomDropdownIndicator<
     <components.DropdownIndicator {...props}>
       <Icon
         name="arrow"
-        width={16}
-        height={16}
         className={clsx(styles.arrow, {
           [styles.open]: menuIsOpen,
         })}

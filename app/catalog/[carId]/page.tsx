@@ -42,16 +42,16 @@ export default async function CarDetails({ params }: CarDetailesProps) {
         <div className={styles.rightColumn}>
           <div className={styles.topInfoWrapper}>
             <div className={styles.titleWrapper}>
-              <h1>
+              <h1 className={styles.title}>
                 {car.model}, {car.year}
               </h1>
               <p className={styles.idText}>Article: {car.id.slice(0, 4)}</p>
             </div>
             <div className={styles.infoWrapper}>
+              <Icon name="location" className={styles.icon} />
               <p className={styles.infoText}>
                 {car.location.city}, {car.location.country}
               </p>
-              <p className={styles.infoText}>Mileage: {car.mileage} km</p>
             </div>
             <p className={styles.price}>${car.rentalPrice}</p>
             <p className={styles.description}>{car.description}</p>
@@ -63,34 +63,19 @@ export default async function CarDetails({ params }: CarDetailesProps) {
               </h2>
               <ul>
                 <li className={styles.infoListItem}>
-                  <Icon
-                    name="check-circle"
-                    width={16}
-                    height={16}
-                    className={styles.infoListIcon}
-                  />
+                  <Icon name="check-circle" className={styles.icon} />
                   <span className={styles.infoListText}>
                     {car.rentalConditions[0]}
                   </span>
                 </li>
                 <li className={styles.infoListItem}>
-                  <Icon
-                    name="check-circle"
-                    width={16}
-                    height={16}
-                    className={styles.infoListIcon}
-                  />
+                  <Icon name="check-circle" className={styles.icon} />
                   <span className={styles.infoListText}>
                     Security deposite required{" "}
                   </span>
                 </li>
                 <li className={styles.infoListItem}>
-                  <Icon
-                    name="check-circle"
-                    width={16}
-                    height={16}
-                    className={styles.infoListIcon}
-                  />
+                  <Icon name="check-circle" className={styles.icon} />
                   <span className={styles.infoListText}>
                     Valid driver’s license
                   </span>
@@ -103,52 +88,27 @@ export default async function CarDetails({ params }: CarDetailesProps) {
               </h2>
               <ul>
                 <li className={styles.infoListItem}>
-                  <Icon
-                    name="calendar"
-                    width={16}
-                    height={16}
-                    className={styles.infoListIcon}
-                  />
+                  <Icon name="calendar" className={styles.icon} />
                   <span className={styles.infoListText}>Year: {car.year}</span>
                 </li>
                 <li className={styles.infoListItem}>
-                  <Icon
-                    name="car"
-                    width={16}
-                    height={16}
-                    className={styles.infoListIcon}
-                  />
+                  <Icon name="car" className={styles.icon} />
                   <span className={styles.infoListText}>Type: {car.type}</span>
                 </li>
                 <li className={styles.infoListItem}>
-                  <Icon
-                    name="fuel-pump"
-                    width={16}
-                    height={16}
-                    className={styles.infoListIcon}
-                  />
+                  <Icon name="fuel-pump" className={styles.icon} />
                   <span className={styles.infoListText}>
                     Fuel Consumption: {car.fuelConsumption}
                   </span>
                 </li>
                 <li className={styles.infoListItem}>
-                  <Icon
-                    name="gear"
-                    width={16}
-                    height={16}
-                    className={styles.infoListIcon}
-                  />
+                  <Icon name="gear" className={styles.icon} />
                   <span className={styles.infoListText}>
                     Engine Size: {car.engine}
                   </span>
                 </li>
                 <li className={styles.infoListItem}>
-                  <Icon
-                    name="mileage"
-                    width={16}
-                    height={16}
-                    className={styles.infoListIcon}
-                  />
+                  <Icon name="mileage" className={styles.icon} />
                   <span className={styles.infoListText}>
                     Mileage: {car.engine}
                   </span>
@@ -162,12 +122,7 @@ export default async function CarDetails({ params }: CarDetailesProps) {
               <ul className={styles.infoList}>
                 {car.features.map((feature) => (
                   <li key={feature} className={styles.infoListItem}>
-                    <Icon
-                      name="check-circle"
-                      width={16}
-                      height={16}
-                      className={styles.infoListIcon}
-                    />
+                    <Icon name="check-circle" className={styles.icon} />
                     <span className={styles.infoListText}>{feature}</span>
                   </li>
                 ))}
