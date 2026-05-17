@@ -66,11 +66,8 @@
 .input {
   width: 160px;
   height: 44px;
-
   padding: 12px 24px;
-
   background-color: var(--color-white);
-
   font-weight: 500;
 }
 
@@ -85,4 +82,5 @@
 
 .input::placeholder {
   font-weight: 500;
+  color: var(--color-primary-text);
 }
