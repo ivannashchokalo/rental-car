@@ -29,6 +29,7 @@ export default function CatalogClient() {
         }),
 
       initialPageParam: 1,
+      refetchOnMount: false,
 
       getNextPageParam: (lastPage) => {
         if (Number(lastPage.page) < lastPage.totalPages) {
