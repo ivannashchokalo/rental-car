@@ -96,11 +96,7 @@ export default function FilterPanel() {
     router.push(`/catalog?${params.toString()}`);
   };
 
-  const handleClearFilters = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const form = e.currentTarget.form;
-
-    form?.reset();
-
+  const handleClearFilters = () => {
     setBrand("");
     setPrice("");
 
@@ -164,6 +160,7 @@ export default function FilterPanel() {
               placeholder="From"
               defaultValue={searchParams.get("minMileage") ?? ""}
               className={clsx(styles.input, styles.inputLeft)}
+              min={0}
             />
 
             <label htmlFor="maxMileage" className="visually-hidden">
@@ -177,6 +174,7 @@ export default function FilterPanel() {
               placeholder="To"
               defaultValue={searchParams.get("maxMileage") ?? ""}
               className={clsx(styles.input, styles.inputRight)}
+              min={0}
             />
           </fieldset>
 

@@ -3,7 +3,7 @@
   min-height: 700px;
   margin: 0 auto;
   background-color: #0b0b0b;
-  background-image: url("/background.webp");
+  background-image: url("/hero-background.webp");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -11,7 +11,7 @@
 
 @media (min-resolution: 192dpi) {
   .hero {
-    background-image: url("/background@2x.webp");
+    background-image: url("/hero-background@2x.webp");
   }
 }
 

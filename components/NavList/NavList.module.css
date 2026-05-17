@@ -17,10 +17,6 @@
   color: var(--color-accent-hover);
 }
 
-.navListLink:active {
-  opacity: 0.5;
-}
-
 .active {
   color: var(--color-accent-hover);
 }

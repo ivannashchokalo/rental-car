@@ -5,7 +5,6 @@ export const customSelectStyles = (
   menuHeight = "272px",
   width = "204px",
 ): StylesConfig<SelectOption> => ({
-  // Головний контейнер select (закритий select)
   control: (base) => ({
     ...base,
     width,
@@ -26,7 +25,6 @@ export const customSelectStyles = (
     },
   }),
 
-  // Контейнер для value / placeholder всередині select
   valueContainer: (base) => ({
     ...base,
     padding: 0,
@@ -49,7 +47,6 @@ export const customSelectStyles = (
     color: "var(--color-primary-text)",
   }),
 
-  // Стилі для вибраного значення
   singleValue: (base) => ({
     ...base,
     margin: 0,
@@ -60,18 +57,15 @@ export const customSelectStyles = (
     color: "var(--color-primary-text)",
   }),
 
-  // Вертикальна лінія біля стрілки
   indicatorSeparator: () => ({
     display: "none",
   }),
 
-  // Контейнер для dropdown arrow
   dropdownIndicator: (base) => ({
     ...base,
     padding: 0,
   }),
 
-  // Dropdown menu
   menu: (base) => ({
     ...base,
 
@@ -90,7 +84,6 @@ export const customSelectStyles = (
     overflow: "hidden",
   }),
 
-  // Контейнер для списку options
   menuList: (base) => ({
     ...base,
     padding: 0,
@@ -100,7 +93,6 @@ export const customSelectStyles = (
     overflowY: "auto",
   }),
 
-  // Один option у dropdown
   option: (base, state) => ({
     ...base,
 

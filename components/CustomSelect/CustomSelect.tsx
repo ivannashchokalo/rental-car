@@ -47,9 +47,9 @@ export default function CustomSelect({
       }}
       formatOptionLabel={formatOptionLabel}
       styles={customSelectStyles(menuHeight, controlWidth)}
-      // menuPortalTarget={document.body}
       menuPosition="fixed"
       placeholder={placeholder}
+      classNamePrefix="custom-select"
     />
   );
 }

@@ -28,7 +28,7 @@ interface BookingRequestData {
   carId: string;
   name: string;
   email: string;
-  comment: string;
+  comment?: string;
 }
 
 export const getCars = async ({
@@ -38,7 +38,6 @@ export const getCars = async ({
   minMileage,
   maxMileage,
 }: GetCarsParams) => {
-  console.log(price);
   const { data } = await api.get<CarsResponse>("/cars", {
     params: {
       ...(brand && { brand }),

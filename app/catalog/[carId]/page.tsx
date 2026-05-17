@@ -95,7 +95,7 @@ export default async function CarDetails({ params }: CarDetailesProps) {
                 <li className={styles.infoListItem}>
                   <Icon name="check-circle" className={styles.icon} />
                   <span className={styles.infoListText}>
-                    Security deposite required{" "}
+                    Security deposite required
                   </span>
                 </li>
                 <li className={styles.infoListItem}>
@@ -134,7 +134,7 @@ export default async function CarDetails({ params }: CarDetailesProps) {
                 <li className={styles.infoListItem}>
                   <Icon name="mileage" className={styles.icon} />
                   <span className={styles.infoListText}>
-                    Mileage: {car.engine}
+                    Mileage: {car.mileage}
                   </span>
                 </li>
               </ul>

@@ -3,30 +3,43 @@ import {
   HydrationBoundary,
   QueryClient,
 } from "@tanstack/react-query";
-import CarList from "../../components/CarList/CarList";
 import Container from "../../components/Container/Container";
-import FilterPanel from "../../components/FilterPanel/FilterPanel";
 import Section from "../../components/Section/Section";
 import { getCars } from "@/lib/cars";
-import styles from "./Catalog.module.css";
+import CatalogClient from "./CatalogClient";
 
-export default async function Catalog() {
+interface CatalogProps {
+  searchParams: Promise<{
+    brand?: string;
+    price?: string;
+    minMileage?: string;
+    maxMileage?: string;
+  }>;
+}
+
+export default async function Catalog({ searchParams }: CatalogProps) {
   const queryClient = new QueryClient();
+  const params = await searchParams;
 
   await queryClient.prefetchInfiniteQuery({
     queryKey: [
       "cars",
       {
-        brand: "",
-        price: "",
-        minMileage: "",
-        maxMileage: "",
+        brand: params.brand ?? "",
+        price: params.price ?? "",
+        minMileage: params.minMileage ?? "",
+        maxMileage: params.maxMileage ?? "",
       },
     ],
 
     queryFn: ({ pageParam }) =>
       getCars({
         pageParam: Number(pageParam),
+
+        brand: params.brand ?? "",
+        price: params.price ?? "",
+        minMileage: params.minMileage ?? "",
+        maxMileage: params.maxMileage ?? "",
       }),
 
     initialPageParam: 1,
@@ -37,9 +50,7 @@ export default async function Catalog() {
       <Container>
         <h1 className="visually-hidden">Car catalog</h1>
         <HydrationBoundary state={dehydrate(queryClient)}>
-          <h2 className="visually-hidden">Cars list</h2>
-          <FilterPanel />
-          <CarList />
+          <CatalogClient />
         </HydrationBoundary>
       </Container>
     </Section>

@@ -24,8 +24,12 @@ const initialValues: FormValues = {
 
 const validationSchema = Yup.object({
   name: Yup.string().min(2, "Too short").required("Name is required"),
-  email: Yup.string().email("Invalid email").required("Email is required"),
-  comment: Yup.string().required("Comment is required"), // на макеті не видно, що обов'язковий, але бекенд вимагає
+  email: Yup.string()
+    .trim()
+    .email("Invalid email")
+    .matches(/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/, "Invalid email")
+    .required("Email is required"),
+  comment: Yup.string(),
 });
 
 export default function BookingForm({ carId }: { carId: string }) {
@@ -49,19 +53,21 @@ export default function BookingForm({ carId }: { carId: string }) {
     values: FormValues,
     actions: FormikHelpers<FormValues>,
   ) => {
-    mutate(
-      {
-        carId,
-        name: values.name,
-        email: values.email,
+    const requestData = {
+      carId,
+      name: values.name,
+      email: values.email,
+
+      ...(values.comment.trim() && {
         comment: values.comment,
+      }),
+    };
+
+    mutate(requestData, {
+      onSuccess: () => {
+        actions.resetForm();
       },
-      {
-        onSuccess: () => {
-          actions.resetForm();
-        },
-      },
-    );
+    });
   };
 
   return (
@@ -126,7 +132,7 @@ export default function BookingForm({ carId }: { carId: string }) {
                 name="comment"
                 id={`${fieldId}-comment`}
                 rows={4}
-                placeholder="Comment*"
+                placeholder="Comment"
                 className={clsx(
                   styles.textarea,
                   styles.inputCommon,
