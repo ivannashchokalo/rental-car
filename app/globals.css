@@ -72,8 +72,12 @@ ol {
 }
 
 button {
+  padding: 0;
+  background: transparent;
   cursor: pointer;
   border: none;
+  font: inherit;
+  color: inherit;
 }
 
 input {

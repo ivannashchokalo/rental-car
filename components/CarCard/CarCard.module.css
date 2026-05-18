@@ -1,21 +1,16 @@
 .card {
   min-height: 490px;
-
   display: flex;
   flex-direction: column;
-
   padding: 16px;
   border-radius: 16px;
-
   background-color: var(--color-white);
 }
 
 .imageWrapper {
   position: relative;
-
   width: 100%;
   height: 268px;
-
   border-radius: 14px;
   overflow: hidden;
 }
@@ -28,13 +23,10 @@
   position: absolute;
   top: 16px;
   right: 16px;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   padding: 0;
-
   border: none;
   background-color: transparent;
 }
@@ -83,23 +75,19 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-
   gap: 12px;
 }
 
 .priceText {
   margin-right: 14px;
-
   font-weight: 500;
 }
 
 .contentListWrapper {
   margin-top: auto;
   margin-bottom: 24px;
-
   padding: 8px;
   border-radius: 8px;
-
   background-color: var(--color-background-page);
 }
 
@@ -113,9 +101,7 @@
 
 .contentListItem {
   position: relative;
-
   padding-right: 6px;
-
   font-weight: 400;
   font-size: 12px;
   line-height: 1.33;
@@ -130,31 +116,23 @@
 
 .contentListFirst .contentListItem::after {
   content: "";
-
   position: absolute;
   top: 0;
   right: 0;
-
   display: inline-block;
-
   width: 1px;
   height: 16px;
-
   background-color: var(--color-border-light);
 }
 
 .contentListItem:not(:last-child)::after {
   content: "";
-
   position: absolute;
   top: 0;
   right: 0;
-
   display: inline-block;
-
   width: 1px;
   height: 16px;
-
   background-color: var(--color-border-light);
 }
 
