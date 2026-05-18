@@ -17,6 +17,12 @@ export default function FilterPanel() {
   const selectedPriceValue = searchParams.get("price") ?? "";
   const [brand, setBrand] = useState(selectedBrandValue);
   const [price, setPrice] = useState(selectedPriceValue);
+  const [minMileage, setMinMileage] = useState(
+    searchParams.get("minMileage") ?? "",
+  );
+  const [maxMileage, setMaxMileage] = useState(
+    searchParams.get("maxMileage") ?? "",
+  );
 
   //----------- brand
 
@@ -67,15 +73,7 @@ export default function FilterPanel() {
   const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const formData = new FormData(e.currentTarget);
     const params = new URLSearchParams();
-
-    const minMileage = formData.get("minMileage") as string;
-    const maxMileage = formData.get("maxMileage") as string;
-
-    if (maxMileage && !minMileage) {
-      params.set("minMileage", "0");
-    }
 
     if (brand) {
       params.set("brand", brand);
@@ -99,6 +97,8 @@ export default function FilterPanel() {
   const handleClearFilters = () => {
     setBrand("");
     setPrice("");
+    setMinMileage("");
+    setMaxMileage("");
 
     router.push("/catalog");
   };
@@ -154,11 +154,12 @@ export default function FilterPanel() {
             </label>
 
             <input
+              value={minMileage}
+              onChange={(e) => setMinMileage(e.target.value)}
               id="minMileage"
               name="minMileage"
               type="number"
               placeholder="From"
-              defaultValue={searchParams.get("minMileage") ?? ""}
               className={clsx(styles.input, styles.inputLeft)}
               min={0}
             />
@@ -168,11 +169,12 @@ export default function FilterPanel() {
             </label>
 
             <input
+              value={maxMileage}
+              onChange={(e) => setMaxMileage(e.target.value)}
               id="maxMileage"
               name="maxMileage"
               type="number"
               placeholder="To"
-              defaultValue={searchParams.get("maxMileage") ?? ""}
               className={clsx(styles.input, styles.inputRight)}
               min={0}
             />
