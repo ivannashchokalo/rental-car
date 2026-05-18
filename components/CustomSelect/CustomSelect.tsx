@@ -49,7 +49,6 @@ export default function CustomSelect({
       styles={customSelectStyles(menuHeight, controlWidth)}
       menuPosition="fixed"
       placeholder={placeholder}
-      classNamePrefix="custom-select"
     />
   );
 }

@@ -86,11 +86,31 @@ export const customSelectStyles = (
 
   menuList: (base) => ({
     ...base,
+
     padding: 0,
 
     maxHeight: menuHeight,
 
     overflowY: "auto",
+
+    scrollbarWidth: "thin",
+    scrollbarColor: "var(--color-border-light) transparent",
+
+    "&::-webkit-scrollbar": {
+      width: 8,
+    },
+
+    "&::-webkit-scrollbar-track": {
+      background: "transparent",
+    },
+
+    "&::-webkit-scrollbar-thumb": {
+      backgroundColor: "var(--color-border-light)",
+      borderRadius: 999,
+
+      border: "2px solid transparent",
+      backgroundClip: "content-box",
+    },
   }),
 
   option: (base, state) => ({

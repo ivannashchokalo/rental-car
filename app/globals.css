@@ -158,23 +158,3 @@ input[type="number"]::-webkit-outer-spin-button {
     clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%);
   }
 }
-
-/*------- custom select -----*/
-
-.custom-select__menu-list::-webkit-scrollbar {
-  width: 8px;
-}
-
-.custom-select__menu-list::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.custom-select__menu-list::-webkit-scrollbar-thumb {
-  background-color: var(--color-border-light);
-  border-radius: 10px;
-}
-
-.custom-select__menu-list {
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-border-light) transparent;
-}
