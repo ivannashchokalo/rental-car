@@ -10,6 +10,7 @@ interface ButtonProps {
   onClick?: () => void;
   type?: "button" | "submit" | "reset";
   disabled?: boolean;
+  target?: string;
 }
 
 export default function Button({
@@ -20,12 +21,13 @@ export default function Button({
   onClick,
   type,
   disabled,
+  target,
 }: ButtonProps) {
   const classes = clsx(styles.button, styles[variant], className);
 
   if (href) {
     return (
-      <Link href={href} className={classes}>
+      <Link href={href} className={classes} target={target}>
         {text}
       </Link>
     );

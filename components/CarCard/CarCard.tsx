@@ -69,6 +69,7 @@ export default function CarCard({ car }: { car: Car }) {
           text="Read more"
           variant="primary"
           className={styles.button}
+          target="_blank"
         />
       </div>
     </article>
